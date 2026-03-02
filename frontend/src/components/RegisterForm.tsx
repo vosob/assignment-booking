@@ -38,55 +38,52 @@ export const RegisterForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       {/* Name */}
-      <>
-        <div className="flex flex-col w-full">
-          <label htmlFor="name" className="text-lg px-1">
-            Name
-          </label>
-          <input
-            className="text-xl outline-0 border border-gray-400 px-2 py-1 "
-            type="text"
-            id="name"
-            {...register("name")}
-          />
-        </div>
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-      </>
+
+      <div className="flex flex-col w-full">
+        <label htmlFor="name" className="text-lg px-1">
+          Name
+        </label>
+        <input
+          className="text-xl outline-0 border border-gray-400 px-2 py-1 "
+          type="text"
+          id="name"
+          {...register("name")}
+        />
+      </div>
+      {errors.name && <p className="text-red-500">{errors.name.message}</p>}
 
       {/* Email */}
-      <>
-        <div className="flex flex-col w-full">
-          <label htmlFor="email" className="text-lg  px-1">
-            Email
-          </label>
-          <input
-            className="text-xl outline-0 border border-gray-400 px-2 py-1"
-            type="text"
-            id="email"
-            {...register("email")}
-          />
-        </div>
 
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </>
+      <div className="flex flex-col w-full">
+        <label htmlFor="email" className="text-lg  px-1">
+          Email
+        </label>
+        <input
+          className="text-xl outline-0 border border-gray-400 px-2 py-1"
+          type="text"
+          id="email"
+          {...register("email")}
+        />
+      </div>
+
+      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
       {/* Password */}
-      <>
-        <div className="flex flex-col w-full">
-          <label htmlFor="password" className="text-lg  px-1">
-            Password
-          </label>
-          <input
-            className="text-xl outline-0 border border-gray-400 px-2 py-1"
-            type="password"
-            id="password"
-            {...register("password")}
-          />
-        </div>
-        {errors.password && (
-          <p className="text-red-500">{errors.password.message}</p>
-        )}
-      </>
+
+      <div className="flex flex-col w-full">
+        <label htmlFor="password" className="text-lg  px-1">
+          Password
+        </label>
+        <input
+          className="text-xl outline-0 border border-gray-400 px-2 py-1"
+          type="password"
+          id="password"
+          {...register("password")}
+        />
+      </div>
+      {errors.password && (
+        <p className="text-red-500">{errors.password.message}</p>
+      )}
 
       {/* Submit */}
       <button

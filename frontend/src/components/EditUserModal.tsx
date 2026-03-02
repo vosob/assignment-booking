@@ -40,70 +40,67 @@ export const EditUserModal = ({
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <h2 className="text-center text-2xl">Edit user</h2>
       {/* Name */}
-      <>
-        <div className="flex justify-between items-center">
-          <label htmlFor="name" className="text-lg px-1">
-            Name
-          </label>
-          <input
-            className="text-xl outline-0 border border-gray-400 px-2 py-1 w-60"
-            type="text"
-            id="name"
-            {...register("name")}
-          />
-        </div>
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-      </>
+
+      <div className="flex justify-between items-center">
+        <label htmlFor="name" className="text-lg px-1">
+          Name
+        </label>
+        <input
+          className="text-xl outline-0 border border-gray-400 px-2 py-1 w-60"
+          type="text"
+          id="name"
+          {...register("name")}
+        />
+      </div>
+      {errors.name && <p className="text-red-500">{errors.name.message}</p>}
 
       {/* Email */}
-      <>
-        <div className="flex justify-between items-center">
-          <label htmlFor="email" className="text-lg  px-1">
-            Email
-          </label>
-          <input
-            className="text-xl outline-0 border border-gray-400 px-2 py-1 w-60"
-            type="text"
-            id="email"
-            defaultValue={initialUser.email}
-            {...register("email")}
-          />
-        </div>
-        {errors.email && (
-          <p className="text-xs text-red-500">{errors.email.message}</p>
-        )}
-      </>
+
+      <div className="flex justify-between items-center">
+        <label htmlFor="email" className="text-lg  px-1">
+          Email
+        </label>
+        <input
+          className="text-xl outline-0 border border-gray-400 px-2 py-1 w-60"
+          type="text"
+          id="email"
+          defaultValue={initialUser.email}
+          {...register("email")}
+        />
+      </div>
+      {errors.email && (
+        <p className="text-xs text-red-500">{errors.email.message}</p>
+      )}
 
       {/* Role */}
-      <>
-        <div className="flex flex-col gap-1">
-          <span className="text-lg px-1">Role</span>
-          <div className="flex gap-4">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                className="cursor-pointer"
-                type="radio"
-                value="CLIENT"
-                {...register("role")}
-                defaultChecked={initialUser.role === "CLIENT"}
-              />
-              <span>Client</span>
-            </label>
 
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                className="cursor-pointer"
-                type="radio"
-                value="BUSINESS"
-                {...register("role")}
-                defaultChecked={initialUser.role === "BUSINESS"}
-              />
-              <span>Business</span>
-            </label>
-          </div>
-          {errors.role && <p className="text-red-500">{errors.role.message}</p>}
+      <div className="flex flex-col gap-1">
+        <span className="text-lg px-1">Role</span>
+        <div className="flex gap-4">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              className="cursor-pointer"
+              type="radio"
+              value="CLIENT"
+              {...register("role")}
+              defaultChecked={initialUser.role === "CLIENT"}
+            />
+            <span>Client</span>
+          </label>
+
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              className="cursor-pointer"
+              type="radio"
+              value="BUSINESS"
+              {...register("role")}
+              defaultChecked={initialUser.role === "BUSINESS"}
+            />
+            <span>Business</span>
+          </label>
         </div>
-      </>
+        {errors.role && <p className="text-red-500">{errors.role.message}</p>}
+      </div>
 
       {/* Control buttons */}
       <div className="flex justify-between">

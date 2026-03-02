@@ -6,6 +6,7 @@ import {
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { Booking } from '@prisma/client';
+import { EditBookingDto } from './dto/edit-booking.dto';
 
 @Injectable()
 export class BookingsService {
@@ -115,6 +116,18 @@ export class BookingsService {
 
     return await this.prismaService.booking.delete({
       where: { id: bookingId },
+    });
+  }
+
+  async editBooking(bookingId: string, dto: EditBookingDto) {
+    const { scheduledAt, endAt } = dto;
+
+    return await this.prismaService.booking.update({
+      where: { id: bookingId },
+      include: {
+        business: { select: { id: true, name: true, email: true } },
+      },
+      data: { scheduledAt, endAt },
     });
   }
 }

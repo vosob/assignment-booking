@@ -20,7 +20,6 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: LoginSchema) => {
     try {
-      console.log(1);
       const { accessToken } = await loginUser(data);
       createToken(accessToken);
       navigate("/bookings");

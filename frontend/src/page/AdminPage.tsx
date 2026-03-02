@@ -5,6 +5,7 @@ import { deleteUser, getAllUser, PatchEditUser } from "../api/users";
 import { UserTable } from "../components/UserTable";
 import { Modal } from "../components/Modal";
 import { EditUserModal } from "../components/EditUserModal";
+import { LoadingError } from "../components/LoadingError";
 
 export const AdminPage = () => {
   const [user, setUser] = useState<User[]>([]);
@@ -40,8 +41,7 @@ export const AdminPage = () => {
       );
       return updatedUser;
     } catch (error) {
-      console.error(error);
-      throw error;
+      setError(error instanceof Error ? error.message : "Failed to fetch");
     }
   };
 
@@ -50,12 +50,11 @@ export const AdminPage = () => {
       await deleteUser(userId);
       setUser((prev) => prev.filter((user) => user.id !== userId));
     } catch (error) {
-      console.error(error);
+      setError(error instanceof Error ? error.message : "Failed to fetch");
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (loading || error) return <LoadingError loading={loading} error={error} />;
 
   return (
     <div className="flex gap-16 p-6">

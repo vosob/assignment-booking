@@ -10,15 +10,18 @@ interface ReserveModalProps {
   businessId: string;
   onClose: () => void;
   onSelectSlot: (slot: Slot) => void;
+  initialDate?: Date;
 }
 
 export const ReserveModal = ({
   businessId,
   onClose,
   onSelectSlot,
+  initialDate,
 }: ReserveModalProps) => {
-  const [date, setDate] = useState("");
-  // const [date, setDate] = useState(initialDate);
+  const [date, setDate] = useState(
+    initialDate?.toISOString().split("T")[0] || "",
+  );
   const [slots, setSlots] = useState<Slot[]>([]);
   const [loading, setLoading] = useState(false);
 

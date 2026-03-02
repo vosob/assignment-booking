@@ -8,16 +8,30 @@ export const Header = () => {
     <header>
       <nav>
         <ul className="container mx-auto flex gap-8 justify-center py-6 text-2xl">
-          <Link to="/">Home</Link>
-          {!isAuthenticated && <Link to="/auth">Auth</Link>}
-          {isAuthenticated && <Link to="/bookings">Bookings</Link>}
-          {isAuthenticated && user?.role === "ADMIN" && (
-            <Link to="/admin">Admin Panel</Link>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          {!isAuthenticated && (
+            <li>
+              <Link to="/auth">Auth</Link>
+            </li>
           )}
           {isAuthenticated && (
-            <button className="cursor-pointer underline" onClick={logout}>
-              Logout
-            </button>
+            <li>
+              <Link to="/bookings">Bookings</Link>
+            </li>
+          )}
+          {isAuthenticated && user?.role === "ADMIN" && (
+            <li>
+              <Link to="/admin">Admin Panel</Link>
+            </li>
+          )}
+          {isAuthenticated && (
+            <li>
+              <button className="cursor-pointer underline" onClick={logout}>
+                Logout
+              </button>
+            </li>
           )}
         </ul>
       </nav>

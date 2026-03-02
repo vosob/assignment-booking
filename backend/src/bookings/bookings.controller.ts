@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   Param,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
@@ -15,6 +16,7 @@ import { User } from '@prisma/client';
 import { Authorization } from 'src/auth/decorators/auth.decorator';
 import { BookingsService } from './bookings.service';
 import { GetSlotsDto } from './dto/get-slots.dto';
+import { EditBookingDto } from './dto/edit-booking.dto';
 
 @Controller('bookings')
 export class BookingsController {
@@ -47,5 +49,11 @@ export class BookingsController {
   @Authorization()
   deleteBooking(@Param('id') id: string, @CurrentUser() user: { id: string }) {
     return this.bookingsService.deleteBooking(user.id, id);
+  }
+
+  @Patch(':id')
+  @Authorization()
+  updateBooking(@Param('id') id: string, @Body() dto: EditBookingDto) {
+    return this.bookingsService.editBooking(id, dto);
   }
 }
