@@ -1,7 +1,7 @@
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
+  // output   = "../generated/prisma"
 }
 
 datasource db {
@@ -11,22 +11,43 @@ datasource db {
 enum Role {
   CLIENT
   BUSINESS
+  ADMIN
 }
 
 model User {
-  id String @id @default(uuid())
-
-  email String @unique
+  id       String @id @default(uuid())
+  email    String @unique
   password String
+  name     String
+  role     Role   @default(CLIENT)
 
-  name String
-
-  role Role @default(CLIENT)
-  
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  clientBookings   Booking[] @relation("ClientBookings")
+  businessBookings Booking[] @relation("BusinessBookings")
+
   @@map("users")
+}
+
+model Booking {
+  id         String  @id @default(uuid())
+
+  clientId   String
+  client     User    @relation("ClientBookings", fields: [clientId], references: [id])
+
+  businessId String
+  business   User    @relation("BusinessBookings", fields: [businessId], references: [id])
+
+  scheduledAt DateTime
+  endAt       DateTime
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([businessId, scheduledAt, endAt])
+  @@index([clientId])
+  @@map("bookings")
 }
 
 // npx prisma db push

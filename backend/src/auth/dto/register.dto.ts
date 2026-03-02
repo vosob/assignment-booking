@@ -11,6 +11,7 @@ import {
 export enum Role {
   CLIENT = 'CLIENT',
   BUSINESS = 'BUSINESS',
+  ADMIN = 'ADMIN',
 }
 
 export class RegisterRequestDto {
